@@ -2,11 +2,11 @@ import boto3
 import json
 import time
 import requests
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 
 # Load environment variables from .env file
-#load_dotenv()
+load_dotenv()
 
 # AWS configurations
 region = "us-east-1"  # Replace with your preferred AWS region
@@ -15,8 +15,8 @@ glue_database_name = "glue_nba_data_lake"
 athena_output_location = f"s3://{bucket_name}/athena-results/"
 
 # Sportsdata.io configurations (loaded from .env)
-api_key =  'XXXXXXXXXXXXXXXXXXX' # Get API key from .env
-nba_endpoint ='https://api.sportsdata.io/v3/nba/scores/json/Players'  #os.getenv("NBA_ENDPOINT")  # Get NBA endpoint from .env
+api_key =  os.getenv("API_KEY") # Get API key from .env
+nba_endpoint =os.getenv("NBA_ENDPOINT")  # Get NBA endpoint from .env
 
 # Create AWS clients
 s3_client = boto3.client("s3", region_name=region)
